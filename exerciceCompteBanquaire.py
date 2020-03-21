@@ -55,7 +55,7 @@ class Compte():
         self._listeTransaction.append(Transaction(self.type,ajout))
         
     def listerTransactions(self):
-        """ Ne fait encore rien """
+        """ Ne fait encore rien mais c'est à faire """
         print(len(self._listeTransaction))
 
 
