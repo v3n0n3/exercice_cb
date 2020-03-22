@@ -2,6 +2,7 @@
 
 import datetime
 import sys
+import os
 
 class Client():
     def __init__(self, nom, prenom, tel):
@@ -93,14 +94,17 @@ def choixOperation(client):
         elif (reponse == 3):
             client.monCompte.listerTransactions()
         elif (reponse == 4):
-            sys.exit(0)#Ne fonctionne pas
+            return "quit"
     except:
         print("Veuillez faire un choix se trouvant dans la liste")
 
 if __name__ == "__main__":
+    running = ""
+    
     #Creation d'un compte
     client = Client("Libert", "Gerald", "0497903620")
+    
     #Lancement du mécanisme de gestion
-    while True:
+    while running != "quit":
         client.affichage()
-        choixOperation(client)
+        running = choixOperation(client)
