@@ -1,8 +1,6 @@
 #coding:utf-8
 
 import datetime
-import sys
-import os
 
 class Client():
     def __init__(self, nom, prenom, tel):
