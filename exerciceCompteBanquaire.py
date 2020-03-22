@@ -1,6 +1,7 @@
 #coding:utf-8
 
 import datetime
+import sys
 
 class Client():
     def __init__(self, nom, prenom, tel):
@@ -50,15 +51,16 @@ class Compte():
         self._listeTransaction.append(Transaction(self.type,ajout))
         
     def debiter(self, ajout):
-        self.type = "credit"  
+        self.type = "debit"  
         self._solde -= ajout
         self._listeTransaction.append(Transaction(self.type,ajout))
         
     def listerTransactions(self):
-        """ Ne fait encore rien mais c'est à faire """
-        print(len(self._listeTransaction))
-
-
+        print("Liste des transactions : ")
+        print("=========================")
+        for i in self._listeTransaction:
+            print(i._dateTransaction,i._type, i._sommeDebitCredit)
+        print("=========================")
 class Transaction():
     def __init__(self, leType, montantDeModification):
         self._dateTransaction = datetime.datetime.now()
@@ -67,10 +69,9 @@ class Transaction():
         
     #Accesseurs
     def getDate(self):
-        return self.dateTransaction
+        return self._dateTransaction
     def getType(self):
         return self._type
-    
     def getSomme(self):
         return self._sommeDebitCredit
 
@@ -82,20 +83,19 @@ def choixOperation(client):
         3.Afficher mes transaction
         4.Quitter
     """)
+
     try:
         reponse = int(input("Faites votre choix : "))
-        if   (reponse == 1):
+        if (reponse == 1):
             client.monCompte.debiter(int(input("Combien souhaitez vous retirer ?")))
         elif (reponse == 2):
             client.monCompte.crediter(int(input("Combien souhaitez vous ajouter ?")))
         elif (reponse == 3):
             client.monCompte.listerTransactions()
         elif (reponse == 4):
-            pass
-        else:
-            print("Votre choix doit correspondre aux valeurs de la liste")
+            sys.exit(0)
     except:
-        print("Votre choix doit être un chiffre et dans la liste")
+        print("Veuillez faire un choix se trouvant dans la liste")
 
 if __name__ == "__main__":
     #Creation d'un compte
