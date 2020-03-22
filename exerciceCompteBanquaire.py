@@ -93,7 +93,7 @@ def choixOperation(client):
         elif (reponse == 3):
             client.monCompte.listerTransactions()
         elif (reponse == 4):
-            sys.exit(0)
+            sys.exit(0)#Ne fonctionne pas
     except:
         print("Veuillez faire un choix se trouvant dans la liste")
 
